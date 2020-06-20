@@ -96,6 +96,32 @@ public class MyModel extends Observable implements IModel {
         }
     }
 
+    private void getSolutionFromServer(int heigh, int width) {
+        try {
+            Client client = new Client(InetAddress.getLocalHost(), 5000, new IClientStrategy() {
+                @Override
+                public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
+                    try {
+                        ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
+                        ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
+                        toServer.flush();
+                        MyMazeGenerator mg = new MyMazeGenerator();
+                        my_maze = mg.generate(width, heigh);
+                        maze = my_maze.getTheMaze();
+                        toServer.writeObject(maze);
+                        toServer.flush();
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            client.communicateWithServer();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
