@@ -2,7 +2,7 @@ package VIewModel;
 
 import Model.IModel;
 import Model.MyModel;
-import algorithms.mazeGenerators.Maze;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
@@ -26,61 +26,53 @@ public class MyViewModel extends Observable implements Observer {
             public void run() {
                 if (o==model){
                     //Notify my observer (View) that I have changed
-
                     setChanged();
                     notifyObservers();
                 }
             }
         });
-
     }
-    //</editor-fold>
-
-    //<editor-fold desc="ViewModel Functionality">
     public void generateMaze(int width, int height){
         model.generateMaze(width, height);
     }
-
     public void stop() {
         MyModel myModel = (MyModel)model;
         myModel.stopServers();
     }
-
-    public void moveCharacter(KeyCode movement){
-        model.moveCharacter(movement);
+    public void ExitApp(){
+        model.close();
     }
-    //</editor-fold>
-
-    //<editor-fold desc="Getters">
+    public void moveCharacter(KeyCode movement){
+        model.updateCharacterLocation(movement);
+    }
     public int[][] getMaze() {
         return model.getMaze();
     }
-
     public int getCharacterPositionRow() {
         //return characterPositionRowIndex;
         return model.getCharacterPositionRow();
     }
-
     public int getCharacterPositionColumn() {
         //return characterPositionColumnIndex;
         return model.getCharacterPositionColumn();
     }
-
+    public void saveMaze(String name){
+        model.saveMaze(name);
+    }
 //    public void setSolution(){
 //        model.setSolution();
 //    }
-
 //    public void hideSolution(){
 //        model.hideSolution();
 //    }
-
-    public void saveMaze(String name){model.saveMaze(name);}
-
 //    public ObservableList<String> getNames(){
 //        return model.getNames();
 //    }
     public void loadMaze(String name){
         model.loadMaze(name);
     }
-    //</editor-fold>
+    public void getSolution(){
+        model.getSolution();
+    }
+
 }

@@ -1,7 +1,7 @@
 package Model;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import javafx.scene.input.KeyCode;
 
 public interface IModel {
 
@@ -9,14 +9,13 @@ public interface IModel {
     void generateMaze(int width, int height);
     int getCharacterPositionRow();
     int getCharacterPositionColumn();
+    void setCharacterPositionRow(int characterPositionRow);
+    void setCharacterPositionColumn(int characterPositionColumn);
+    void saveMaze(String name);
+    void loadMaze(String name );
     void close();
-    public int[][] getMaze();
-    public int getRowChar();
-    public int getColChar();
-    public void updateCharacterLocation(int direction);
-    public void saveMaze(String name);
-    public  getSolution()
-
-
+    int[][] getMaze();
+    void updateCharacterLocation(KeyCode direction);
+    void getSolution();
 
 }

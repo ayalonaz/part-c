@@ -8,15 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="74e28bff-9d91-4c8f-9f6a-b1c1eccd8748" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/ATPProjectJAR.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ATPProjectJAR.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/AboutController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/Iview.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/LoadController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/MyViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/PropertiesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/View/SaveController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/ViewModal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/partC/main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/IModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/MyModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/MyModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VIewModel/MyViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VIewModel/MyViewModel.java" afterDir="false" />
@@ -49,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../part-c" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -115,22 +106,31 @@
       <option name="presentableId" value="LOCAL‎00001" />
       <updated>1592397372434</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="delete not used file">
+      <created>1592645214078</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592645214078</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="last version" />
-    <option name="LAST_COMMIT_MESSAGE" value="last version" />
+    <MESSAGE value="delete not used file" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete not used file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3752" y="410" key="#Project_Structure" timestamp="1592222840331">
       <screen x="3200" y="232" width="1920" height="1040" />
     </state>
     <state x="3752" y="410" key="#Project_Structure/0.0.1280.680/3200.232.1920.1040@3200.232.1920.1040" timestamp="1592222840331" />
-    <state x="-1155" y="773" key="#com.intellij.ide.util.MemberChooser" timestamp="1592560851279">
-      <screen x="-1920" y="552" width="1920" height="1040" />
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1592645601786">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1155" y="773" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1920.552.1920.1040@-1920.552.1920.1040" timestamp="1592560851279" />
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-3840.-557.1707.920@0.0.1920.1040" timestamp="1592645601786" />
     <state x="3911" y="603" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592125855384">
       <screen x="3200" y="232" width="1920" height="1040" />
     </state>
@@ -143,16 +143,18 @@
       <screen x="3200" y="232" width="1920" height="1040" />
     </state>
     <state x="3890" y="499" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/3200.232.1920.1040@3200.232.1920.1040" timestamp="1591962616111" />
-    <state x="-1474" y="726" key="CommitChangelistDialog2" timestamp="1592642177683">
-      <screen x="-1920" y="726" width="1920" height="1040" />
+    <state x="446" y="0" key="CommitChangelistDialog2" timestamp="1592645210997">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680/-1920.552.1920.1040@0.0.1280.680" timestamp="1592397371148" />
     <state x="-1474" y="726" key="CommitChangelistDialog2/0.0.1280.680/-1920.726.1920.1040@-1920.726.1920.1040" timestamp="1592642177683" />
-    <state x="3940" y="769" key="FileChooserDialogImpl" timestamp="1592582000190">
-      <screen x="3200" y="494" width="1920" height="1040" />
+    <state x="446" y="0" key="CommitChangelistDialog2/0.0.1920.1040/-3840.-557.1707.920@0.0.1920.1040" timestamp="1592645210997" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1592654694031">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="3940" y="507" key="FileChooserDialogImpl/0.0.1280.680/3200.232.1920.1040@3200.232.1920.1040" timestamp="1592222894140" />
     <state x="3940" y="769" key="FileChooserDialogImpl/0.0.1280.680/3200.494.1920.1040@3200.494.1920.1040" timestamp="1592582000190" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-3840.-557.1707.920@0.0.1920.1040" timestamp="1592654694031" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1591976547061">
       <screen x="3200" y="232" width="1920" height="1040" />
     </state>
@@ -191,10 +193,11 @@
     <state x="3661" y="394" key="SettingsEditor/0.0.1280.680/3200.232.1920.1040@3200.232.1920.1040" timestamp="1592222899092" />
     <state x="3661" y="656" key="SettingsEditor/0.0.1280.680/3200.494.1920.1040@3200.494.1920.1040" timestamp="1592581988492" />
     <state x="242" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1592214993586" />
-    <state x="234" y="74" key="Vcs.Push.Dialog.v2" timestamp="1592397387997">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="351" y="113" key="Vcs.Push.Dialog.v2" timestamp="1592645217368">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="234" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.552.1920.1040@0.0.1280.680" timestamp="1592397387997" />
+    <state x="351" y="113" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-3840.-557.1707.920@0.0.1920.1040" timestamp="1592645217368" />
     <state x="437" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1592595035728">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -219,6 +222,11 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/MyModel.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

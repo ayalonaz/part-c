@@ -4,9 +4,9 @@ import Client.Client;
 import Client.IClientStrategy;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.*;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,7 +18,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-
 public class MyModel extends Observable implements IModel {
 
     private ExecutorService threadPool = Executors.newCachedThreadPool();
@@ -28,23 +27,16 @@ public class MyModel extends Observable implements IModel {
     private int[][] maze;
     private int goal_id = 3;
 
-
-
     public MyModel() {
         maze = null;
         characterPositionRow = 0;
         characterPositionColumn = 0;
     }
-
-
     public void startServers() {
     }
-
     public void stopServers() {
         threadPool.shutdown();
     }
-
-
     public int[][] getMaze() {
         return maze;
     }
@@ -53,12 +45,10 @@ public class MyModel extends Observable implements IModel {
     public int getCharacterPositionRow() {
         return characterPositionRow;
     }
-
     @Override
     public int getCharacterPositionColumn() {
         return characterPositionColumn;
     }
-
     @Override
     public void close() {
         try {
@@ -68,7 +58,6 @@ public class MyModel extends Observable implements IModel {
             //e.printStackTrace();
         }
     }
-
     private void generateWithServers(int heigh, int width) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5000, new IClientStrategy() {
@@ -83,8 +72,6 @@ public class MyModel extends Observable implements IModel {
                         maze = my_maze.getTheMaze();
                         toServer.writeObject(maze);
                         toServer.flush();
-
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -95,7 +82,6 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-
     private void getSolutionFromServer(int heigh, int width) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5000, new IClientStrategy() {
@@ -110,8 +96,6 @@ public class MyModel extends Observable implements IModel {
                         maze = my_maze.getTheMaze();
                         toServer.writeObject(maze);
                         toServer.flush();
-
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -122,13 +106,6 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
     public void generateMaze(int width, int height) {
         threadPool.execute(() -> {
             try {
@@ -146,61 +123,60 @@ public class MyModel extends Observable implements IModel {
             notifyObservers(maze); //Wave the flag so the observers will notice
         });
     }
-
-
     public void setCharacterPositionRow(int characterPositionRow) {
         this.characterPositionRow = characterPositionRow;
     }
-
     public void setCharacterPositionColumn(int characterPositionColumn) {
         this.characterPositionColumn = characterPositionColumn;
     }
-
     public void updateCharacterLocation(KeyCode key) {
-
         int char_col=characterPositionColumn;
         int char_row=characterPositionRow;
         switch (key) {
-
-            case 1: //Up
-                  if(legalMove(char_row-1,char_col))
+            case NUMPAD8: //Up
+                if(legalMove(char_row-1,char_col))
                     setCharacterPositionRow(char_row-1);
-                  break;
-            case 2: //Down
-                  if(legalMove(char_row+1,char_col))
-                      setCharacterPositionRow(char_row+1);
-                  break;
-            case 3: //Left
-                  if(legalMove(char_row,char_col-1))
+                break;
+            case NUMPAD2: //Down
+                if(legalMove(char_row+1,char_col))
+                    setCharacterPositionRow(char_row+1);
+                break;
+            case NUMPAD4: //Left
+                if(legalMove(char_row,char_col-1))
                     setCharacterPositionColumn(char_col-1);
-                  break;
-            case 4: //Right
-                  if(legalMove(char_row,char_col+1))
-                      setCharacterPositionColumn(char_col+1);
-                  break;
-            case 5: //up & right
-                if(legalMove(char_row-1,char_col+1))
+                break;
+            case NUMPAD6: //Right
+                if(legalMove(char_row,char_col+1))
                     setCharacterPositionColumn(char_col+1);
-                    setCharacterPositionRow(char_row-1);
-            case 6: //up & left
-                if(legalMove(char_row-1,char_col-1))
-                    setCharacterPositionColumn(char_col-1);
-                    setCharacterPositionRow(char_row-1);
-            case 7: //down & right
-                if(legalMove(char_row+1,char_col+1))
-                    setCharacterPositionColumn(char_col+1);
-                     setCharacterPositionRow(char_row+1);
-            case 8: //down & left
-                if(legalMove(char_row+1,char_col-1))
-                    setCharacterPositionColumn(char_col-1);
-                     setCharacterPositionRow(char_row+1);
-
+                break;
+            case NUMPAD9: //up & right
+                if(legalMove(char_row-1,char_col+1)) {
+                    setCharacterPositionColumn(char_col + 1);
+                    setCharacterPositionRow(char_row - 1);
+                }
+                break;
+            case NUMPAD7: //up & left
+                if(legalMove(char_row-1,char_col-1)) {
+                    setCharacterPositionColumn(char_col - 1);
+                    setCharacterPositionRow(char_row - 1);
+                }
+                break;
+            case NUMPAD3: //down & right
+                if(legalMove(char_row+1,char_col+1)) {
+                    setCharacterPositionColumn(char_col + 1);
+                    setCharacterPositionRow(char_row + 1);
+                }
+                break;
+            case NUMPAD1: //down & left
+                if(legalMove(char_row+1,char_col-1)) {
+                    setCharacterPositionColumn(char_col - 1);
+                    setCharacterPositionRow(char_row + 1);
+                }
+                break;
         }
         setChanged();
         notifyObservers();
     }
-
-
     private boolean legalMove(int row, int column) {
         if (row < 0 || row > my_maze.getRowNumbers() || column < 0 || column > my_maze.getColNumbers()) {
             return false;
@@ -210,41 +186,34 @@ public class MyModel extends Observable implements IModel {
         }
     }
 
-
     @Override
     public void saveMaze(String name)  {
         try{
-        Path path= Paths.get("Recources/"+name+".txt");
-        if(Files.exists(path)) {
-            Alert al = new Alert(Alert.AlertType.INFORMATION, "the maze already exsit in folder");
-        }
-        else{
+            Path path= Paths.get("Recources/"+name+".txt");
+            if(Files.exists(path)) {
+                Alert al = new Alert(Alert.AlertType.INFORMATION, "the maze already exsit in folder");
+            }
+            else{
                 FileWriter myWriter= new FileWriter(path.toString());
-           int cols= my_maze.getColNumbers();
-           int rows=my_maze.getRowNumbers();
-           int char_col=this.characterPositionColumn;
-           int char_row=this.characterPositionRow;
-           myWriter.append(char_col+",");
-           myWriter.append(char_row+",");
-            myWriter.append((char) cols+",");
-            myWriter.append((char) rows+",");
+                int cols= my_maze.getColNumbers();
+                int rows=my_maze.getRowNumbers();
+                int char_col=this.characterPositionColumn;
+                int char_row=this.characterPositionRow;
+                myWriter.append(char_col+",");
+                myWriter.append(char_row+",");
+                myWriter.append((char) cols+",");
+                myWriter.append((char) rows+",");
                 for(int i=0;i<rows;i++) {
                     for (int j = 0; j < cols; j++) {
                         myWriter.write(maze[i][j]+",");
-
-                   }
-
+                    }
                 }
-              myWriter.close();
+                myWriter.close();
             }
-
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
-
-
     public void loadMaze(String name ){
         try{
             FileReader fileReader=new FileReader("Recources/"+name+".txt");
@@ -279,12 +248,9 @@ public class MyModel extends Observable implements IModel {
         }
 
     }
-
-    public void getSolution(){
+    public void getSolution() {
 
     }
-
-
 }
 
 
