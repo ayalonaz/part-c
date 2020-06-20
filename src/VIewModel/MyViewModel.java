@@ -66,19 +66,19 @@ public class MyViewModel extends Observable implements Observer {
         return model.getCharacterPositionColumn();
     }
 
-    public void setSolution(){
-        model.setSolution();
-    }
+//    public void setSolution(){
+//        model.setSolution();
+//    }
 
-    public void hideSolution(){
-        model.hideSolution();
-    }
+//    public void hideSolution(){
+//        model.hideSolution();
+//    }
 
     public void saveMaze(String name){model.saveMaze(name);}
 
-    public ObservableList<String> getNames(){
-        return model.getNames();
-    }
+//    public ObservableList<String> getNames(){
+//        return model.getNames();
+//    }
     public void loadMaze(String name){
         model.loadMaze(name);
     }
