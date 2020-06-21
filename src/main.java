@@ -31,7 +31,8 @@ public class main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/propertiesPage.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("Minion Maze Game");
-        primaryStage.setScene(new Scene(root,600,600));
+        Scene scene = new Scene(root,900,700);
+        primaryStage.setScene(scene);
         primaryStage.show();
 
         IModel model = new MyModel();
@@ -39,6 +40,7 @@ public class main extends Application {
         ScreenController view = fxmlLoader.getController();
         view.setViewModel(viewModel);
         view.setStage(primaryStage);
+//        model.add
         viewModel.addObserver(view);
 
         //ViewModel -> Model

@@ -3,20 +3,12 @@ package View;
 import VIewModel.MyViewModel;
 import javafx.fxml.FXML;
 
-public class MyViewController extends ScreenController {
-    @FXML private MazeDisplayer MazeDisplayer;
-//    private MyViewModel viewModel;
+public class MyViewController {
+    @FXML private MazeDisplayer mazeDisplay;
 
     @FXML
     public void initialize(){
-        MazeDisplayer.drawMaze(viewModel.getMaze());
+        mazeDisplay.drawMaze(ScreenController.viewModel.getMaze());
     }
 
-
-
-
-
-
-
 }
-

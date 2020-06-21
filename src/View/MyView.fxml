@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 
 <?import View.MazeDisplayer?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <children>
-      <Button layoutX="280.0" layoutY="346.0" mnemonicParsing="false" text="solve" />
+      <Button layoutX="390.0" layoutY="498.0" mnemonicParsing="false" text="solve" />
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="290.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -39,6 +39,10 @@
             </Menu>
         </menus>
       </MenuBar>
-      <MazeDisplayer fx:id="MazeDisplayer" height="272.0" layoutX="101.0" layoutY="49.0" width="397.0" />
+      <Pane fx:id="holdMaze" layoutX="52.0" layoutY="44.0" prefHeight="444.0" prefWidth="726.0">
+         <children>
+            <MazeDisplayer fx:id="mazeDisplay"/>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
