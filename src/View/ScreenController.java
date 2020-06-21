@@ -40,7 +40,7 @@ public class ScreenController implements Iview,Observer {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/View/" + fxmlPath));
-            screenMap.put(name, new Scene(root, 600, 400));
+            screenMap.put(name, new Scene(root, 900, 700));
         } catch (IOException e) {
             e.printStackTrace();
         }

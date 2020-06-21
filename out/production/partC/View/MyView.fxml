@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import View.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-      <BorderPane prefHeight="582.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
          <top>
             <MenuBar prefHeight="25.0" prefWidth="824.0" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="NEW" />
-                        <MenuItem mnemonicParsing="false" text="Save Maze" />
-                        <MenuItem mnemonicParsing="false" text="Load Maze" />
+                    <MenuItem mnemonicParsing="false" onAction="#startNewGame" text="New" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveMaze" text="Save Maze" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Properties" />
+                    <MenuItem mnemonicParsing="false" onAction="#showProperties" text="Properties" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="rules" />
+                    <MenuItem mnemonicParsing="false" onAction="#showRules" text="rules" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="About">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Show About" />
+                      <MenuItem mnemonicParsing="false" onAction="#showAbout" text="Show About" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Exit">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Exit" />
+                      <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
                     </items>
                   </Menu>
               </menus>
             </MenuBar>
          </top>
          <center>
-            <MazeDisplayer fx:id="mazeDisplay" height="441.0" width="726.0" BorderPane.alignment="CENTER">
+            <MazeDisplayer fx:id="mazeDisplay" height="600" width="880" BorderPane.alignment="CENTER">
 
       </MazeDisplayer>
          </center>
          <bottom>
-            <Button mnemonicParsing="false" text="solve" BorderPane.alignment="CENTER" />
+            <Button fx:id="solBtn" mnemonicParsing="false" onAction="#showSolution" text="Show Solution" textFill="#dd1616" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin></Button>
          </bottom>
       </BorderPane>
-   
-
