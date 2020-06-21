@@ -64,11 +64,13 @@ public class MazeDisplayer extends Canvas {
             Image characterImage=null;
             Image win=null;
             Image pathImage=null;
+            Image backRound=null;
             try {
-                wallImage = new Image(new FileInputStream("Resources/images/wallImage.gif"));
-                characterImage=new Image(new FileInputStream("Resources/images/characterImage.gif"));
-                win=new Image(new FileInputStream("Resources/images/winImage.gif"));
-                pathImage=new Image(new FileInputStream("Resources/images/pathImage.gif"));
+                wallImage = new Image(new FileInputStream("Resources/images/wallNew.png"));
+                characterImage=new Image(new FileInputStream("Resources/images/characterNew.png"));
+                backRound = new Image(new FileInputStream("Resources/images/passGround.PNG"));
+                win=new Image(new FileInputStream("Resources/images/win.gif"));
+                pathImage=new Image(new FileInputStream("Resources/images/passSol.gif"));
 
 
                 for(int i=0;i<row;i++)
@@ -88,7 +90,7 @@ public class MazeDisplayer extends Canvas {
                             graphicsContext.drawImage(pathImage,w,h,cellWidth,cellHeight);
                         }
                         else {
-                            graphicsContext.drawImage(pathImage,w,h,cellWidth,cellHeight);
+                            graphicsContext.drawImage(backRound,w,h,cellWidth,cellHeight);
                         }
 
                     }

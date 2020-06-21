@@ -66,7 +66,7 @@ public class propertiesPageController extends ScreenController{
         this.rows= Integer.parseInt(userRows.getText());
         this.cols=Integer.parseInt(userCols.getText());
         viewModel.generateMaze(rows,cols);
-        addScreen("MyView","/View/MyView.fxml");
+        addScreen("MyView","/MyView.fxml");
         activate("MyView");
     }
 

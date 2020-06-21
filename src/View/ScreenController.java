@@ -25,7 +25,7 @@ import VIewModel.MyViewModel;
 public class ScreenController implements Iview,Observer {
     private HashMap<String, Scene> screenMap = new HashMap<>();
 
-    private static Stage main;
+    protected static Stage main;
     protected static MyViewModel viewModel;
     private int rows;
     private int cols;
