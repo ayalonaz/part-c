@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.propertiesPageController">
+   <top>
+      <VBox prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#startNewGame" text="New" />
+                        <MenuItem fx:id="saveMaze" mnemonicParsing="false" onAction="#saveMaze" text="Save Maze" />
+                        <MenuItem fx:id="loadMaze" mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showProperties" text="Properties" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="rules" mnemonicParsing="false" onAction="#showRules" text="rules" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="about" mnemonicParsing="false" onAction="#showAbout" text="About" />
+                  <Menu fx:id="Exit" mnemonicParsing="false" onAction="#closeApplication" onMenuValidation="#closeApplication" text="Exit" />
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="151.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="120.0" prefWidth="237.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+               <children>
+                  <TextField fx:id="userRows" alignment="CENTER" onAction="#getRowsFromUser" prefHeight="28.0" prefWidth="111.0" promptText="10" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Rows :">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Columns :" textOverrun="CLIP" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="startBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generteMaze" prefHeight="37.0" prefWidth="189.0" text="Start Game!!" textFill="#dd3c0b" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <TextField fx:id="userCols" alignment="CENTER" onAction="#getColsFromUser" prefHeight="40.0" prefWidth="118.0" promptText="15" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+   </bottom>
+<!--   <center>-->
+<!--      <Pane prefHeight="443.0" prefWidth="900.0" BorderPane.alignment="CENTER">-->
+<!--&lt;!&ndash;         <children>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ImageView fitHeight="376.0" fitWidth="493.0" layoutX="210.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">&ndash;&gt;-->
+<!--&lt;!&ndash;               <image>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <Image url="../../Resources/images/propertiesPage.png" />&ndash;&gt;-->
+<!--&lt;!&ndash;               </image></ImageView>&ndash;&gt;-->
+<!--&lt;!&ndash;         </children>&ndash;&gt;-->
+<!--      </Pane>-->
+<!--   </center>-->
+</BorderPane>

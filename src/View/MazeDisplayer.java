@@ -10,7 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class MazeDisplayer extends Canvas {
-
+    private  int characterPositionRow=0;
+    private  int CharacterPositionColumn=0;
     private int [][] maze;
 
 
@@ -20,6 +21,17 @@ public class MazeDisplayer extends Canvas {
         this.maze = maze;
         draw();
     }
+
+    private void drawCharacter(int row,int col){
+        characterPositionRow=row;
+        CharacterPositionColumn=col;
+        draw();
+    }
+
+
+
+
+
     StringProperty imageFileNameWall = new SimpleStringProperty();
     StringProperty imageFileNamePlayer = new SimpleStringProperty();
 
@@ -60,37 +72,40 @@ public class MazeDisplayer extends Canvas {
             double w,h;
             //Draw Maze
             Image wallImage = null;
+            Image characterImage=null;
+            Image win=null;
+            Image pathImage=null;
             try {
-                wallImage = new Image(new FileInputStream(getImageFileNameWall()));
-            } catch (FileNotFoundException e) {
-                System.out.println("There is no file....");
-            }
-            for(int i=0;i<row;i++)
-            {
-                for(int j=0;j<col;j++)
+                wallImage = new Image(new FileInputStream("Resources/images/wallImage.gif"));
+                characterImage=new Image(new FileInputStream("Resources/images/characterImage.gif"));
+                win=new Image(new FileInputStream("Resources/images/winImage.gif"));
+                pathImage=new Image(new FileInputStream("Resources/images/pathImage.gif"));
+
+
+                for(int i=0;i<row;i++)
                 {
-                    if(maze[i][j] == 1) // Wall
+                    for(int j=0;j<col;j++)
                     {
                         h = i * cellHeight;
                         w = j * cellWidth;
-                        if (wallImage == null){
-                            graphicsContext.fillRect(w,h,cellWidth,cellHeight);
-                        }else{
+                        if(maze[i][j] == 1) // Wall
+                        {
                             graphicsContext.drawImage(wallImage,w,h,cellWidth,cellHeight);
                         }
-                    }
+                        else if(maze[i][j]==3){
+                            graphicsContext.drawImage(characterImage,w,h,cellWidth,cellHeight);
+                        }
+                        else if(maze[i][j]==4){
+                            graphicsContext.drawImage(pathImage,w,h,cellWidth,cellHeight);
+                        }
 
+                    }
                 }
-            }
-            double h_player = getRow_player() * cellHeight;
-            double w_player = getCol_player() * cellWidth;
-            Image playerImage = null;
-            try {
-                playerImage = new Image(new FileInputStream(getImageFileNamePlayer()));
+
             } catch (FileNotFoundException e) {
                 System.out.println("There is no Image player....");
             }
-            graphicsContext.drawImage(playerImage,w_player,h_player,cellWidth,cellHeight);
+
 
         }
     }
@@ -103,4 +118,3 @@ public class MazeDisplayer extends Canvas {
         return 0;
     }
 }
-

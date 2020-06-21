@@ -1,5 +1,8 @@
 
-import View.AboutController;
+import Model.IModel;
+import Model.MyModel;
+import VIewModel.MyViewModel;
+import View.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +28,17 @@ public class main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/propertiesPage.fxml"));
+        Parent root = fxmlLoader.load();
+        primaryStage.setTitle("Minion Maze Game");
+        primaryStage.setScene(new Scene(root,900,900));
+        primaryStage.show();
+
+        IModel model = new MyModel();
+        MyViewModel viewModel = new MyViewModel(model);
+        ScreenController view = fxmlLoader.getController();
+        view.setViewModel(viewModel);
+        viewModel.addObserver(view);
         //ViewModel -> Model
 //        MyModel model = new MyModel();
 //        model.startServers();
@@ -32,27 +46,33 @@ public class main extends Application {
 //        model.addObserver(viewModel);
 
         //Loading Main Windows
-        primaryStage.setTitle("THE BARNEY MAZE GAME");
-        primaryStage.setWidth(400);
-        primaryStage.setHeight(600);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(getClass().getResource("View/About.fxml").openStream());
-        Scene scene = new Scene(root, 400, 600);
-       // scene.getStylesheets().add(getClass().getResource("View/MyView.css").toExternalForm());
-        primaryStage.minWidthProperty().bind(scene.heightProperty());
-        primaryStage.minHeightProperty().bind(scene.widthProperty().divide(2));
-        primaryStage.setScene(scene);
-
-        //View -> ViewModel
-//        MyViewController view = fxmlLoader.getController();
-//        view.initialize(viewModel,primaryStage,scene);
+//        primaryStage.setTitle("THE Minion MAZE GAME");
+//        primaryStage.setWidth(400);
+//        primaryStage.setHeight(600);
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        Parent root = fxmlLoader.load(getClass().getResource("View/propertiesPage.fxml").openStream());
+//        Scene scene = new Scene(root, 400, 600);
+//
+//        IModel model = new MyModel();
+//        MyViewModel viewModel = new MyViewModel(model);
+//        ScreenController view =fxmlLoader.getController();
+//        view.setViewModel(viewModel);
 //        viewModel.addObserver(view);
-        //--------------
-        //setStageCloseEvent(primaryStage,model);
-        //setStageCloseEvent(primaryStage, model);
-        //
-        //Show the Main Window
-        primaryStage.show();
+//       // scene.getStylesheets().add(getClass().getResource("View/MyView.css").toExternalForm());
+//        primaryStage.minWidthProperty().bind(scene.heightProperty());
+//        primaryStage.minHeightProperty().bind(scene.widthProperty().divide(2));
+//        primaryStage.setScene(scene);
+//
+//        //View -> ViewModel
+////        MyViewController view = fxmlLoader.getController();
+////        view.initialize(viewModel,primaryStage,scene);
+////        viewModel.addObserver(view);
+//        //--------------
+//        //setStageCloseEvent(primaryStage,model);
+//        //setStageCloseEvent(primaryStage, model);
+//        //
+//        //Show the Main Window
+//        primaryStage.show();
     }
 
 

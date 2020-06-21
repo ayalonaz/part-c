@@ -1,31 +1,14 @@
 package View;
 
+import VIewModel.MyViewModel;
+import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+
 public class MenuController {
+    MyViewModel viewModel;
 
 
-
-    public void loadMaze(){
-
-     }
-
-    public void saveMaze(){
-
-    }
-    public void startNewGame(){
-
-    }
-
-    public void showProperties(){}
-
-    public void showRules(){
-
-    }
-    public void showAbout()
-    {
-
-    }
-    public void closeApplication(){
-
-    }
 
 }

@@ -2,6 +2,8 @@ package Model;
 
 import Client.Client;
 import Client.IClientStrategy;
+import IO.MyCompressorOutputStream;
+import IO.MyDecompressorInputStream;
 import Server.ServerStrategySolveSearchProblem;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
@@ -35,47 +37,28 @@ public class MyModel extends Observable implements IModel {
     private int[][] maze;
     private Solution sol;
 
-
-
     public MyModel() {
         maze = null;
         characterPositionRow = 0;
         characterPositionColumn = 0;
     }
-
-
-    public void startServers() {
-    }
-
+    //    public void startServers() {
+//
+//    }
     public void stopServers() {
         threadPool.shutdown();
     }
-
-
     public int[][] getMaze() {
         return maze;
     }
-
-    @Override
-    public int getRowChar() {
-        return characterPositionRow;
-    }
-
-    @Override
-    public int getColChar() {
-        return characterPositionColumn;
-    }
-
     @Override
     public int getCharacterPositionRow() {
         return characterPositionRow;
     }
-
     @Override
     public int getCharacterPositionColumn() {
         return characterPositionColumn;
     }
-
     @Override
     public void close() {
         try {
@@ -85,7 +68,6 @@ public class MyModel extends Observable implements IModel {
             //e.printStackTrace();
         }
     }
-
     private void generateMazeServer(int height, int width) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5000, new IClientStrategy() {
@@ -119,7 +101,6 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-
     public void getSolution() {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5000, new IClientStrategy() {
@@ -152,13 +133,6 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
     public void generateMaze(int width, int height) {
         threadPool.execute(() -> {
             try {
@@ -178,16 +152,12 @@ public class MyModel extends Observable implements IModel {
             notifyObservers(maze); //Wave the flag so the observers will notice
         });
     }
-
-
     public void setCharacterPositionRow(int characterPositionRow) {
         this.characterPositionRow = characterPositionRow;
     }
-
     public void setCharacterPositionColumn(int characterPositionColumn) {
         this.characterPositionColumn = characterPositionColumn;
     }
-
     public void updateCharacterLocation(KeyCode key) {
 
         int char_col=characterPositionColumn;
@@ -195,21 +165,21 @@ public class MyModel extends Observable implements IModel {
         switch (key) {
 
             case NUMPAD8: //Up
-                  if(legalMove(char_row-1,char_col))
+                if(legalMove(char_row-1,char_col))
                     setCharacterPositionRow(char_row-1);
-                  break;
+                break;
             case NUMPAD2: //Down
-                  if(legalMove(char_row+1,char_col))
-                      setCharacterPositionRow(char_row+1);
-                  break;
+                if(legalMove(char_row+1,char_col))
+                    setCharacterPositionRow(char_row+1);
+                break;
             case NUMPAD4: //Left
-                  if(legalMove(char_row,char_col-1))
+                if(legalMove(char_row,char_col-1))
                     setCharacterPositionColumn(char_col-1);
-                  break;
+                break;
             case NUMPAD6: //Right
-                  if(legalMove(char_row,char_col+1))
-                      setCharacterPositionColumn(char_col+1);
-                  break;
+                if(legalMove(char_row,char_col+1))
+                    setCharacterPositionColumn(char_col+1);
+                break;
             case NUMPAD9: //up & right
                 if(legalMove(char_row-1,char_col+1)) {
                     setCharacterPositionColumn(char_col + 1);
@@ -255,8 +225,6 @@ public class MyModel extends Observable implements IModel {
         setChanged();
         notifyObservers();
     }
-
-
     private boolean legalMove(int row, int column) {
         if (row < 0 || row > my_maze.getRowNumbers() || column < 0 || column > my_maze.getColNumbers()) {
             return false;
@@ -265,97 +233,56 @@ public class MyModel extends Observable implements IModel {
             return true;
         }
     }
-
-
     @Override
-    public void saveMaze(String name)  {
+    public void saveMaze(File file)  {
         try{
-        Path path= Paths.get("../../Resources/savedMaze/"+name+".txt");
-        if(Files.exists(path)) {
-            Alert al = new Alert(Alert.AlertType.INFORMATION, "the maze already exsit in folder");
+            OutputStream out = new FileOutputStream(file);
+            int char_col=this.characterPositionColumn;
+            int char_row=this.characterPositionRow;
+            MyCompressorOutputStream comp = new MyCompressorOutputStream(out) ;
+            comp.write(my_maze.toByteArray());
+            out.close();
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.append(","+char_row+","+char_col);
+            fileWriter.close();
         }
-        else{
-            FileWriter myWriter= new FileWriter(path.toString());
-           int cols= my_maze.getColNumbers();
-           int rows=my_maze.getRowNumbers();
-           int char_col=this.characterPositionColumn;
-           int char_row=this.characterPositionRow;
-           myWriter.append(char_col+",");
-           myWriter.append(char_row+",");
-            myWriter.append((char) cols+",");
-            myWriter.append((char) rows+",");
-                for(int i=0;i<rows;i++) {
-                    for (int j = 0; j < cols; j++) {
-                        myWriter.write(maze[i][j]+",");
-
-                   }
-
-                }
-              myWriter.close();
-            }
-
-        }catch (IOException e){
+        catch (IOException e){
             e.printStackTrace();
         }
 
     }
-
-
-    public void loadMaze(String name ){
+    public void loadMaze(File file){
         try{
-            FileReader fileReader=new FileReader("../../Resources/savedMaze/"+name+".txt");
+            InputStream in = new FileInputStream(file);
+            MyDecompressorInputStream deCom = new MyDecompressorInputStream(in);
+            byte[] mazeByte = new byte[(int) file.length()-4];
+            deCom.read(mazeByte);
+            FileReader fileReader=new FileReader(file);
             BufferedReader inStream = new BufferedReader(fileReader);
             String s=inStream.readLine();
             String[] Data_from_file=s.split(",");
-            int char_col=Integer.parseInt(Data_from_file[0]);
+            int char_col=Integer.parseInt(Data_from_file[2]);
             int char_row=Integer.parseInt(Data_from_file[1]);
-            int col=Integer.parseInt(Data_from_file[2]);
-            int row=Integer.parseInt(Data_from_file[3]);
-            int[][] maze_from_file=new int[row][col];
-            int k=4;
-            for(int i=0;i<row;i++){
-                for(int j=0;j<col;j++){
-                    maze_from_file[i][j]=Integer.parseInt(Data_from_file[k]);
-                    k++;
-                }
-
-
-            }
-            fileReader.close();
-            this.maze=maze_from_file;
-            this.my_maze=new Maze(row,col);
-            my_maze.setTheMaze(maze_from_file);
+            this.my_maze = new Maze(mazeByte);
+            maze=this.my_maze.getTheMaze();
+            maze[char_row][char_col]=3;
             this.characterPositionColumn=char_col;
             this.characterPositionRow=char_row;
+            in.close();
+            fileReader.close();
             setChanged();
             notifyObservers(my_maze);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-public void openLoadFile(){
-
-    File dirOfMazes=new File("../../Resources/savedMaze");
-    FileChooser FileChooser=new FileChooser();
-    FileChooser.setInitialDirectory(dirOfMazes);
-    File r=FileChooser.showOpenDialog(null);
-
-}
-
-public void openSaveFile(){
-        File dirOfMazes=new File("../../Resources/savedMaze");
-        FileChooser FileChooser=new FileChooser();
-        FileChooser.setInitialDirectory(dirOfMazes);
-        File r=FileChooser.showOpenDialog(null);
+    @Override
+    public Maze getMazeDetails() {
+        return this.my_maze;
     }
-
-
-
 }
 
 
