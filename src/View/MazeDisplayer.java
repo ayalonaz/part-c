@@ -14,8 +14,6 @@ public class MazeDisplayer extends Canvas {
     private  int CharacterPositionColumn=0;
     private int [][] maze;
 
-
-
     public void drawMaze(int [][] maze)
     {
         this.maze = maze;
@@ -27,10 +25,6 @@ public class MazeDisplayer extends Canvas {
         CharacterPositionColumn=col;
         draw();
     }
-
-
-
-
 
     StringProperty imageFileNameWall = new SimpleStringProperty();
     StringProperty imageFileNamePlayer = new SimpleStringProperty();
@@ -50,11 +44,6 @@ public class MazeDisplayer extends Canvas {
     public void setImageFileNamePlayer(String imageFileNamePlayer) {
         this.imageFileNamePlayer.set(imageFileNamePlayer);
     }
-
-
-
-
-
 
     public void draw()
     {
@@ -96,6 +85,9 @@ public class MazeDisplayer extends Canvas {
                             graphicsContext.drawImage(characterImage,w,h,cellWidth,cellHeight);
                         }
                         else if(maze[i][j]==4){
+                            graphicsContext.drawImage(pathImage,w,h,cellWidth,cellHeight);
+                        }
+                        else {
                             graphicsContext.drawImage(pathImage,w,h,cellWidth,cellHeight);
                         }
 

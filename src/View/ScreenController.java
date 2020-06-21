@@ -25,18 +25,21 @@ import VIewModel.MyViewModel;
 public class ScreenController implements Iview,Observer {
     private HashMap<String, Scene> screenMap = new HashMap<>();
 
-    private Stage main;
-    protected MyViewModel viewModel ;
+    private static Stage main;
+    protected static MyViewModel viewModel;
     private int rows;
     private int cols;
     private float mousePositionX;
     private float mousePositionY;
 
+
+
     protected void addScreen(String name,String fxmlPath){
         if(screenMap.containsKey(name))
-        return;
+            return;
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+
+            Parent root = FXMLLoader.load(getClass().getResource("/View/" + fxmlPath));
             screenMap.put(name, new Scene(root, 600, 400));
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +65,7 @@ public class ScreenController implements Iview,Observer {
             viewModel.loadMaze(r);
             this.rows=viewModel.getRowsNumber();
             this.cols=viewModel.getColsNumber();
-            activate("gameScene");
+            activate("MyView");
         }
         else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -86,7 +89,8 @@ public class ScreenController implements Iview,Observer {
     }
     public void startNewGame(){
         viewModel.generateMaze(viewModel.getRowsNumber(),viewModel.getColsNumber());
-        activate("gameScene");
+        addScreen("MyView","View/MyView.fxml");
+        activate("MyView");
     }
     public void showProperties(){
         activate("Properties");
@@ -103,10 +107,12 @@ public class ScreenController implements Iview,Observer {
         Platform.exit();
     }
 
-
+    public void setStage(Stage stage){
+        main=stage;
+    }
 
     public void setViewModel(MyViewModel viewModel){
-        this.viewModel=viewModel;
+        ScreenController.viewModel=viewModel;
     }
 
 

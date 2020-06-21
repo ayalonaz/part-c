@@ -31,14 +31,16 @@ public class main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/propertiesPage.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("Minion Maze Game");
-        primaryStage.setScene(new Scene(root,900,900));
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
 
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         ScreenController view = fxmlLoader.getController();
         view.setViewModel(viewModel);
+        view.setStage(primaryStage);
         viewModel.addObserver(view);
+
         //ViewModel -> Model
 //        MyModel model = new MyModel();
 //        model.startServers();

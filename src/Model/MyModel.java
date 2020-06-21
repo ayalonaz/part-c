@@ -134,23 +134,18 @@ public class MyModel extends Observable implements IModel {
         }
     }
     public void generateMaze(int width, int height) {
-        threadPool.execute(() -> {
-            try {
-                Thread.sleep(1000);
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             MyMazeGenerator mazeGenerator = new MyMazeGenerator();
             Maze local_maze = mazeGenerator.generate(width, height);
             my_maze = local_maze;
+            this.maze=this.my_maze.getTheMaze();
             characterPositionRow = my_maze.getStartPosition().getRowIndex();
             characterPositionColumn = my_maze.getStartPosition().getColumnIndex();
-
+            this.maze[characterPositionRow][characterPositionColumn] = 3;
 
             setChanged(); //Raise a flag that I have changed
             notifyObservers(maze); //Wave the flag so the observers will notice
-        });
+
     }
     public void setCharacterPositionRow(int characterPositionRow) {
         this.characterPositionRow = characterPositionRow;
@@ -225,6 +220,22 @@ public class MyModel extends Observable implements IModel {
         setChanged();
         notifyObservers();
     }
+
+   private void hideSol(){
+        for(int i=0;i<my_maze.getRowNumbers();i++){
+            for(int j=0;j<my_maze.getColNumbers();j++){
+                if(maze[i][j]==9){
+                    maze[i][j]=0;
+                }
+            }
+        }
+   }
+
+
+
+
+
+
     private boolean legalMove(int row, int column) {
         if (row < 0 || row > my_maze.getRowNumbers() || column < 0 || column > my_maze.getColNumbers()) {
             return false;

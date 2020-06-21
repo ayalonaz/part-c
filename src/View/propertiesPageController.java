@@ -25,6 +25,7 @@ public class propertiesPageController extends ScreenController{
     public void generteMaze(){
 
         viewModel.generateMaze(rows,cols);
-        activate("gameSecne");
+        addScreen("MyView","/MyView.fxml");
+        activate("MyView");
     }
 }
