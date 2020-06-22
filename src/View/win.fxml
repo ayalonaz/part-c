@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.winController">
+    
+   <center>
+       <HBox fx:id="ImageHolder" BorderPane.alignment="CENTER" maxHeight="400">
+           <children>
+               <ImageView fx:id="win_image" pickOnBounds="true" preserveRatio="true" />
+           </children>
+       </HBox>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+          <Menu mnemonicParsing="false" text="File">
+              <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#startNewGame" text="New" />
+              <MenuItem fx:id="saveMaze" mnemonicParsing="false" onAction="#saveMaze" text="Save Maze" />
+              <MenuItem fx:id="loadMaze" mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+              <items>
+                  <Menu fx:id="propertiesMenu" mnemonicParsing="false" text="Properties">
+                      <items>
+                          <Menu fx:id="GenerateMenu" mnemonicParsing="false" text="Generate Maze Algorithm">
+                              <items>
+                                  <CheckMenuItem fx:id="noWalls" mnemonicParsing="false" text="without walls"/>
+                                  <CheckMenuItem fx:id="randomWalls" mnemonicParsing="false" text="random walls"/>
+                                  <CheckMenuItem fx:id="primAlgo" mnemonicParsing="false" selected="true"
+                                                 text="Prim Algorithm"/>
+                              </items>
+                          </Menu>
+                          <Menu fx:id="solveMenu" mnemonicParsing="false" text="SolveAlgorithms">
+                              <items>
+                                  <CheckMenuItem fx:id="bestSolve" mnemonicParsing="false" onAction="#changeBestfs"
+                                                 text="Best First Search"/>
+                                  <CheckMenuItem fx:id="bfsSolve" mnemonicParsing="false" onAction="#changeBFS"
+                                                 selected="true" text="BFS"/>
+                                  <CheckMenuItem fx:id="dfsSolve" mnemonicParsing="false" onAction="#changeDFS"
+                                                 selected="true" text="DFS"/>
+                                  <SeparatorMenuItem mnemonicParsing="false"/>
+                              </items>
+                          </Menu>
+                      </items>
+                  </Menu>
+              </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+              <MenuItem fx:id="rules" mnemonicParsing="false" onAction="#showRules" text="rules" />
+          </Menu>
+          <Menu fx:id="about" mnemonicParsing="false" onAction="#showAbout" text="About">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showAbout" text="Show About" />
+              </items></Menu>
+          <Menu mnemonicParsing="false" text="Exit">
+              <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
+          </Menu>
+      </MenuBar>
+   </top>
+</BorderPane>

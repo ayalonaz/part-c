@@ -26,10 +26,7 @@ public interface IModel {
     int[][] getMaze();
     void updateCharacterLocation(KeyCode direction);
     void getSolution();
-
-
-
-
-
-
+    void generateMazeServer(int height, int width);
+    void hideSol();
+    void startServers();
 }

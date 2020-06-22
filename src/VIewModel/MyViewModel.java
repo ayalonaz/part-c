@@ -33,7 +33,8 @@ public class MyViewModel extends Observable implements Observer {
         });
     }
     public void generateMaze(int width, int height){
-        model.generateMaze(width, height);
+        model.generateMazeServer( height, width);
+//        model.generateMaze( width, height);
     }
     public void stop() {
         MyModel myModel = (MyModel)model;
@@ -84,5 +85,6 @@ public class MyViewModel extends Observable implements Observer {
     public void getSolution(){
         model.getSolution();
     }
+    public void hideSol(){model.hideSol();}
 
 }

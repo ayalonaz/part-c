@@ -39,7 +39,7 @@ public class ScreenController implements Iview,Observer {
             return;
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/View/" + fxmlPath));
+            Parent root = FXMLLoader.load(getClass().getResource("/View" + fxmlPath));
             screenMap.put(name, new Scene(root, 900, 700));
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,6 +48,7 @@ public class ScreenController implements Iview,Observer {
     protected void removeScreen(String name){
         screenMap.remove(name);
     }
+
     protected void activate(String name){
         if(screenMap.containsKey(name)){
             main.setScene(screenMap.get(name));
@@ -95,6 +96,7 @@ public class ScreenController implements Iview,Observer {
     public void showProperties(){
         activate("Properties");
     }
+
     public void showRules(){
         activate("Rules");
     }
@@ -105,6 +107,15 @@ public class ScreenController implements Iview,Observer {
     public void closeApplication(){
         viewModel.ExitApp();
         Platform.exit();
+    }
+    public void changeBestfs(){
+
+    }
+    public void changeBFS(){
+
+    }
+    public void changeDFS(){
+
     }
 
     public void setStage(Stage stage){

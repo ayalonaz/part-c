@@ -6,55 +6,73 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="View.MyViewController">
+<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <top>
         <MenuBar prefHeight="25.0" prefWidth="824.0" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#startNewGame" text="New"/>
-                        <MenuItem mnemonicParsing="false" onAction="#saveMaze" text="Save Maze"/>
-                        <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load Maze"/>
+                        <MenuItem mnemonicParsing="false" onAction="#startNewGame" text="New" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveMaze" text="Save Maze" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showProperties" text="Properties"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showProperties" text="Properties" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showRules" text="rules"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showRules" text="rules" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="About">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAbout" text="Show About"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showAbout" text="Show About" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Exit">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Exit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
     <center>
-        <MazeDisplayer fx:id="mazeDisplay" height="600" width="880" BorderPane.alignment="CENTER">
+        <MazeDisplayer fx:id="mazeDisplay" height="600" onKeyPressed="#PressOnKey" width="880" BorderPane.alignment="CENTER">
 
         </MazeDisplayer>
     </center>
     <bottom>
-        <Button fx:id="solBtn" mnemonicParsing="false" onAction="#showSolution" text="Show Solution" textFill="#dd1616"
-                BorderPane.alignment="CENTER">
-            <font>
-                <Font name="Berlin Sans FB Demi Bold" size="29.0"/>
-            </font>
-            <BorderPane.margin>
-                <Insets bottom="20.0"/>
-            </BorderPane.margin>
-        </Button>
+      <VBox fx:id="vBoxView" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+         <children>
+            <GridPane fx:id="gPane">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                    <Button fx:id="solBtn" mnemonicParsing="false" onAction="#showSolution" text="Show Solution" textFill="#dd1616" GridPane.columnIndex="1">
+                        <font>
+                            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+                        </font>
+                    </Button>
+                  <Button fx:id="solHide" mnemonicParsing="false" onAction="#hideSol" prefHeight="54.0" prefWidth="266.0" text="Hide Solution" textFill="#eb1717">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
     </bottom>
 </BorderPane>
